@@ -45,4 +45,18 @@ hello
 
 ### Attributes
 
-As elements can have attributes, an attribute can be introduced after `0x01`, followed by the attribute ID. The end of an attribute section has to be declared with `0x00`, this closes the current HTML tag too.
+As elements can have attributes, an attribute can be introduced after `0x01`, followed by the attribute ID (`0x80`-`0xFF`). The end of an attribute section has to be declared with `0x00`, this closes the current HTML tag too. Note that some elements automatically introduce attribute mode if it can't have any content (e. g. `img`, `hr`, `br`).
+
+HTML:
+
+```html
+<a href="/target">click me!</a>
+<img src="/img.png" id="myimg">
+```
+
+AO-HTML (whitespaces and code points added for better readability):
+
+```
+\x90click me!\x01\x80/target\x00
+\x91/img.png\xE0my-id\x00
+```
