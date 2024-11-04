@@ -17,6 +17,8 @@ A HTML element tag can be opened using a byte in this range: `0x80`-`0xFF` (128 
 
 It can be closed with `0x00`.
 
+If this is a custom tag, there has to be a `0x00` at the end of the name.
+
 HTML:
 
 ```html
@@ -26,6 +28,7 @@ HTML:
     hello
   </p>
 </div>
+<hello-world />
 ```
 
 AO-HTML (whitespaces and code points added for better readability):
@@ -37,6 +40,7 @@ AO-HTML (whitespaces and code points added for better readability):
 hello
 \x00
 \x00
+\xFFhello-world\x00\x00
 ```
 
 ### Attributes
