@@ -13,6 +13,32 @@ Use inside [HSSP](https://github.com/acridotheres/hssp)v8 files for best results
 
 ### HTML tags
 
-A HTML element tag can be opened using a byte in this range: `0x80`-`0xFF` (128 allowed HTML tags, 127 are used).
+A HTML element tag can be opened using a byte in this range: `0x80`-`0xFF` (128 allowed HTML tags, 127 are used by the w3 spec (including deprecated ones), `0xFF` introduces a custom tag).
 
-It can be closed by either `0x00` (closes without any attributes) or `0x01` (close with attributes).
+It can be closed with `0x00`.
+
+HTML:
+
+```html
+<h1>Hello</h1>
+<div>
+  <p>
+    hello
+  </p>
+</div>
+```
+
+AO-HTML (whitespaces and code points added for better readability):
+
+```
+\x80Hello\x00
+\xA0
+\x86
+hello
+\x00
+\x00
+```
+
+### Attributes
+
+As elements can have attributes, an attribute can be introduced after `0x01`, followed by the attribute ID. The end of an attribute section has to be declared with `0x00`, this closes the current HTML tag too.
