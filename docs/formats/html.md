@@ -2,7 +2,9 @@
 
 Acridotheres Optimized Hypertext Markup Language is a binary format to store HTML code efficiently.
 
-Use inside [HSSP](https://github.com/acridotheres/hssp)v8 files for best results. 
+Use inside [HSSP](https://github.com/acridotheres/hssp)v8 files for best results.
+
+Also, this format performs really well when compression is applied additionally as stuff like closing tags are the same for every element type.
 
 ## File structure
 
